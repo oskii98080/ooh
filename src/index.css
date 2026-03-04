@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+@theme {
+  --font-primary: "Montserrat", sans-serif;
+  --font-secondary: "Outfit", sans-serif;
+
+  --color-charcoal: #0A0A0A;
+  --color-gold: #C9A84C;
+  --color-white: #FFFFFF;
+  --color-ivory: #FAF7F2;
+  --color-sage: #8A9A5B;
+  --color-blush: #E8D5D5;
+
+  --animate-marquee: marquee var(--marquee-duration, 30s) linear infinite;
+  --animate-marquee-reverse: marquee-reverse var(--marquee-duration, 30s) linear infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes marquee-reverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-charcoal text-white font-secondary selection:bg-gold/30;
+    background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    background-blend-mode: multiply;
+  }
+
+  h1, h2, h3, h4, .serif {
+    @apply font-primary font-bold;
+  }
+}
+
+.glass {
+  @apply bg-white/5 backdrop-blur-md border border-white/10;
+}
+
+.gold-underline {
+  @apply relative inline-block;
+}
+
+.gold-underline::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-[2px] bg-gold transition-all duration-700 ease-out;
+}
+
+.gold-underline.active::after {
+  @apply w-full;
+}
+
+.shimmer-btn {
+  background: linear-gradient(90deg, #C9A84C 0%, #E5C158 50%, #C9A84C 100%);
+  background-size: 200% 100%;
+}
+
+.shimmer-btn:hover {
+  animation: shimmer 1.5s infinite;
+}
